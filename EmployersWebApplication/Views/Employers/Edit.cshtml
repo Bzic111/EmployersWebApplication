@@ -1,0 +1,45 @@
+﻿@model IEnumerable<Employer>
+
+@{
+    ViewBag.Title = "Employers";
+}
+
+@{
+
+    <a class="btn btn-success" asp-action="Create">Create</a>
+
+    if (Model.Any())
+    {
+        <table class="table">
+            <thead>
+                <tr>
+                    <th></th>
+
+                    <th>Id</th>
+                    <th>FirstName</th>
+                    <th>LastName</th>
+                    <th>Patronimic</th>
+                    <th>Birthday</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+            @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Id</td>
+                        <td>@item.FirstName</td>
+                        <td asp-action="Details" asp-route-id="@item.Id">@item.LastName</td>
+                        <td>@item.Patronimic</td>
+                        <td>@item.Birthday</td>
+                        <td asp-action="Remove" asp-route-id="@item.Id" class="text-danger">
+                        <i class="fa fa-trash-alt"></i></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+}
+
+
+<h1>Employers</h1>
